@@ -26,6 +26,21 @@ app.post("/api/todos", (req, res) => {
 
   res.status(201).json(todo);
 });
+app.get("/api/todos/:id", (req, res) =>{
+    // Obtenemos el id y como es un texto, lo convertimos a número
+    const id = Number(req.params.id);
+    // Recorre todos y dame el elemento que coincida con el id
+    const todo = todos.find((todo) => todo.id === id);
+    // Si el id no existe
+    if(!todo) {
+        return res.status(404).json({
+            message: "Tarea no encontrada",
+        })
+    }
+    res.json({
+        todo: todo,
+    })
+})
 
 const PORT = process.env.PORT || 3000;
 
