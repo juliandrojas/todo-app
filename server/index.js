@@ -59,6 +59,23 @@ app.put("/api/todos/:id", (req, res) => {
 
   res.json({ todo });
 });
+app.delete("/api/todos/:id", (req, res) => {
+  const id = Number(req.params.id);
+
+  const index = todos.findIndex((todo) => todo.id === id);
+
+  if (index === -1) {
+    return res.status(404).json({
+      message: "Tarea no encontrada",
+    });
+  }
+
+  todos.splice(index, 1);
+
+  res.json({
+    message: "Tarea eliminada correctamente",
+  });
+});
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
