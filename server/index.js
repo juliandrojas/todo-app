@@ -41,7 +41,24 @@ app.get("/api/todos/:id", (req, res) =>{
         todo: todo,
     })
 })
+app.put("/api/todos/:id", (req, res) => {
+  const id = Number(req.params.id);
 
+  const todo = todos.find((todo) => todo.id === id);
+
+  if (!todo) {
+    return res.status(404).json({
+      message: "Tarea no encontrada",
+    });
+  }
+
+  const { title, completed } = req.body;
+
+  todo.title = title;
+  todo.completed = completed;
+
+  res.json({ todo });
+});
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
