@@ -5,7 +5,10 @@ const app = express();
 app.use(express.json());
 
 app.get("/api/todos", (req, res) => {
-  res.json([]);
+  res.json({
+  message: "Lista de tareas",
+  todos: [],
+});
 });
 
 const PORT = process.env.PORT || 3000;
