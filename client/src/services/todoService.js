@@ -3,7 +3,7 @@ export const getTodos = async () => {
     const response = await api.get("/todos");
     return response.data;
 }
-export const getTodos = async () => {
+export const createTodo = async () => {
     const response = await api.post("/todos", todo);
     return response.data;
 }
