@@ -9,7 +9,8 @@ export default function Todos() {
     const loadTodos = async () => {
       try {
         const data = await getTodos();
-        setTodos(data);
+        setTodos(data.title);
+        console.log("Tareas disponibles: "+data);
       } catch (error) {
         console.error("Error al obtener las tareas: ", error);
         setError("No se pudieron obtener las tareas");
