@@ -1,0 +1,16 @@
+git switch main
+git pull origin main
+
+git switch -c feature/nueva-funcionalidad
+
+# trabajar...
+
+git status
+git diff
+
+git add .
+git status
+git diff --cached
+
+git commit -m "feat: descripción"
+git push -u origin feature/nueva-funcionalidad
