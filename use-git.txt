@@ -1,0 +1,107 @@
+FLUJO DE TRABAJO CON GIT Y RAMAS
+
+1. Ir a la rama principal
+
+git switch master
+git pull origin master
+
+
+2. Crear una nueva rama
+
+git switch -c feature/nueva-funcionalidad
+
+
+3. Trabajar en la funcionalidad
+
+Realizar los cambios necesarios en el proyecto.
+
+
+4. Revisar los cambios
+
+git status
+git diff
+
+
+5. Agregar los cambios al staging
+
+git add .
+
+
+6. Revisar lo que se va a guardar
+
+git status
+git diff --cached
+
+
+7. Crear el commit
+
+git commit -m "feat: descripción de la funcionalidad"
+
+
+8. Subir la rama a GitHub
+
+Primera vez:
+
+git push -u origin feature/nueva-funcionalidad
+
+Después:
+
+git push
+
+
+9. Crear Pull Request
+
+En GitHub:
+
+feature/nueva-funcionalidad -> master
+
+Revisar los cambios y crear el Pull Request.
+
+
+10. Hacer Merge
+
+Una vez aprobado el Pull Request, hacer Merge hacia master.
+
+
+11. Actualizar master local
+
+git switch master
+git pull origin master
+
+
+12. Eliminar la rama local
+
+git branch -d feature/nueva-funcionalidad
+
+
+13. Eliminar la rama remota
+
+git push origin --delete feature/nueva-funcionalidad
+
+
+FLUJO RESUMIDO
+
+git switch master
+git pull origin master
+git switch -c feature/nueva-funcionalidad
+
+# trabajar...
+
+git status
+git diff
+
+git add .
+git status
+git diff --cached
+
+git commit -m "feat: descripción"
+git push -u origin feature/nueva-funcionalidad
+
+# Crear Pull Request en GitHub
+# feature/nueva-funcionalidad -> master
+# Hacer Merge
+
+git switch master
+git pull origin master
+git branch -d feature/nueva-funcionalidad
+git push origin --delete feature/nueva-funcionalidad
