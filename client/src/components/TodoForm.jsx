@@ -26,6 +26,7 @@ export default function TodoForm({ onTodoCreated }) {
       onTodoCreated(newTodo);
 
       setTitle("");
+      setError(null);
     } catch (error) {
       console.error("Error al crear la tarea:", error);
       setError("No se pudo crear la tarea");
