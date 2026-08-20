@@ -1,14 +1,17 @@
-
 export default function TodoItem({ todo }) {
   return (
-    <li>
-      <span>
-        {todo.title}
-      </span>
-      <br />
-      <span>
+    <tr>
+      <td>{todo.id}</td>
+
+      <td>{todo.title}</td>
+
+      <td>
         {todo.completed ? "Completada" : "Pendiente"}
-      </span>
-    </li>
+      </td>
+
+      <td>
+        <button>Editar</button>
+      </td>
+    </tr>
   );
 }
