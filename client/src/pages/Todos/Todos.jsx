@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import TodoForm from "../../components/TodoForm";
 import TodoList from "../../components/TodoList";
 import { getTodos } from "../../services/todoService";
 
@@ -30,10 +31,22 @@ export default function Todos() {
   if (error) {
     return <p>{error}</p>;
   }
+  const handleTodoCreated = (newTodo) => {
+    setTodos((currentTodos) => [...currentTodos, newTodo]);
+  };
 
+  if (loading) {
+    return <p>Cargando tareas...</p>;
+  }
+
+  if (error) {
+    return <p>{error}</p>;
+  }
   return (
     <div>
       <h1>Mis tareas</h1>
+
+      <TodoForm onTodoCreated={handleTodoCreated} />
 
       {todos.length === 0 ? (
         <p>No hay tareas todavía.</p>
