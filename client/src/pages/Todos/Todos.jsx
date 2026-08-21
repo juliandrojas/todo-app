@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+
 import TodoForm from "../../components/TodoForm";
 import TodoList from "../../components/TodoList";
 import { getTodos } from "../../services/todoService";
@@ -24,42 +26,61 @@ export default function Todos() {
     loadTodos();
   }, []);
 
-  if (loading) {
-    return <p>Cargando tareas...</p>;
-  }
-
-  if (error) {
-    return <p>{error}</p>;
-  }
   const handleTodoCreated = (newTodo) => {
     setTodos((currentTodos) => [...currentTodos, newTodo]);
   };
 
   const handleTodoUpdated = (updatedTodo) => {
-  setTodos((currentTodos) =>
-    currentTodos.map((todo) =>
-      todo.id === updatedTodo.id ? updatedTodo : todo
-    )
-  );
-};  
+    setTodos((currentTodos) =>
+      currentTodos.map((todo) =>
+        todo.id === updatedTodo.id ? updatedTodo : todo
+      )
+    );
+  };
 
   if (loading) {
-    return <p>Cargando tareas...</p>;
+    return (
+      <div className="container mt-4">
+        <p className="text-center">Cargando tareas...</p>
+      </div>
+    );
   }
 
   if (error) {
-    return <p>{error}</p>;
+    return (
+      <div className="container mt-4">
+        <p className="text-danger text-center">{error}</p>
+      </div>
+    );
   }
-  return (
-    <div>
-      <h1>Mis tareas</h1>
 
-      <TodoForm onTodoCreated={handleTodoCreated} />
+  return (
+    <div className="container mt-4">
+      <div className="d-flex justify-content-between align-items-center mb-4">
+        <h1 className="mb-0">Mis tareas</h1>
+
+          <Link to="/" className="btn btn-secondary">
+  Volver al inicio
+</Link>
+      </div>
+
+      <div className="card shadow-sm mb-4">
+        <div className="card-body">
+          <h5 className="card-title mb-3">Nueva tarea</h5>
+
+          <TodoForm onTodoCreated={handleTodoCreated} />
+        </div>
+      </div>
 
       {todos.length === 0 ? (
-        <p>No hay tareas todavía.</p>
+        <div className="alert alert-info text-center">
+          No hay tareas todavía.
+        </div>
       ) : (
-        <TodoList todos={todos} onTodoUpdated={handleTodoUpdated} />
+        <TodoList
+          todos={todos}
+          onTodoUpdated={handleTodoUpdated}
+        />
       )}
     </div>
   );

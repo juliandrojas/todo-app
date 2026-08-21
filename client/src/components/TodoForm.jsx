@@ -24,7 +24,6 @@ export default function TodoForm({ onTodoCreated }) {
       });
 
       onTodoCreated(newTodo);
-
       setTitle("");
       setError(null);
     } catch (error) {
@@ -36,20 +35,31 @@ export default function TodoForm({ onTodoCreated }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        placeholder="Escribe una tarea..."
-        value={title}
-        onChange={(event) => setTitle(event.target.value)}
-        disabled={loading}
-      />
+    <form onSubmit={handleSubmit} className="d-flex flex-column gap-2">
+      <div className="d-flex gap-2">
+        <input
+          type="text"
+          className="form-control"
+          placeholder="Escribe una tarea..."
+          value={title}
+          onChange={(event) => setTitle(event.target.value)}
+          disabled={loading}
+        />
 
-      <button type="submit" disabled={loading}>
-        {loading ? "Agregando..." : "Agregar"}
-      </button>
+        <button
+          type="submit"
+          className="btn btn-primary"
+          disabled={loading}
+        >
+          {loading ? "Agregando..." : "Agregar"}
+        </button>
+      </div>
 
-      {error && <p>{error}</p>}
+      {error && (
+        <p className="text-danger mb-0">
+          {error}
+        </p>
+      )}
     </form>
   );
 }

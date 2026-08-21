@@ -52,6 +52,7 @@ export default function TodoItem({ todo, onTodoUpdated }) {
         {editing ? (
           <input
             type="text"
+            className="form-control"
             value={title}
             onChange={(event) => setTitle(event.target.value)}
             disabled={loading}
@@ -64,41 +65,61 @@ export default function TodoItem({ todo, onTodoUpdated }) {
       <td>
         {editing ? (
           <select
+            className="form-select"
             value={completed}
-            onChange={(event) => setCompleted(event.target.value === "true")}
+            onChange={(event) =>
+              setCompleted(event.target.value === "true")
+            }
             disabled={loading}
           >
             <option value="false">Pendiente</option>
             <option value="true">Completada</option>
           </select>
         ) : todo.completed ? (
-          "Completada"
+          <span className="badge text-bg-success">
+            Completada
+          </span>
         ) : (
-          "Pendiente"
+          <span className="badge text-bg-warning">
+            Pendiente
+          </span>
         )}
       </td>
 
       <td>
         {editing ? (
-          <>
-            <button onClick={handleSave} disabled={loading}>
+          <div className="d-flex gap-2">
+            <button
+              onClick={handleSave}
+              disabled={loading}
+              className="btn btn-success btn-sm"
+            >
               {loading ? "Guardando..." : "Guardar"}
             </button>
 
-            <button onClick={handleCancel} disabled={loading}>
+            <button
+              onClick={handleCancel}
+              disabled={loading}
+              className="btn btn-secondary btn-sm"
+            >
               Cancelar
             </button>
-          </>
+          </div>
         ) : (
-          <button onClick={handleEdit}>Editar</button>
+          <button
+            onClick={handleEdit}
+            className="btn btn-primary btn-sm"
+          >
+            Editar
+          </button>
+        )}
+
+        {error && (
+          <div className="text-danger small mt-2">
+            {error}
+          </div>
         )}
       </td>
-
-      {error && (
-        <td>
-          <p>{error}</p>
-        </td>
-      )}
     </tr>
   );
 }
