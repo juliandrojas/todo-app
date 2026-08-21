@@ -35,6 +35,14 @@ export default function Todos() {
     setTodos((currentTodos) => [...currentTodos, newTodo]);
   };
 
+  const handleTodoUpdated = (updatedTodo) => {
+  setTodos((currentTodos) =>
+    currentTodos.map((todo) =>
+      todo.id === updatedTodo.id ? updatedTodo : todo
+    )
+  );
+};  
+
   if (loading) {
     return <p>Cargando tareas...</p>;
   }
@@ -51,7 +59,7 @@ export default function Todos() {
       {todos.length === 0 ? (
         <p>No hay tareas todavía.</p>
       ) : (
-        <TodoList todos={todos} />
+        <TodoList todos={todos} onTodoUpdated={handleTodoUpdated} />
       )}
     </div>
   );
