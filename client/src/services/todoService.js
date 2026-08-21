@@ -2,7 +2,7 @@ import api from "../config/api";
 
 export const getTodos = async () => {
   const response = await api.get("/api/todos");
-  return response.data.todos;
+  return Array.isArray(response.data?.todos) ? response.data.todos : [];
 };
 
 export const createTodo = async (todo) => {
