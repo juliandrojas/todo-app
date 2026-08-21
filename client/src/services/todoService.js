@@ -12,7 +12,7 @@ export const createTodo = async (todo) => {
 
 export const updateTodo = async (id, todo) => {
   const response = await api.put(`/api/todos/${id}`, todo);
-  return response.data;
+  return response.data.todo;
 };
 
 export const deleteTodo = async (id) => {

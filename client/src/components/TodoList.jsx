@@ -1,6 +1,6 @@
 import TodoItem from "./TodoItem";
 
-export default function TodoList({ todos }) {
+export default function TodoList({ todos, onTodoUpdated }) {
   return (
     <table>
       <thead>
@@ -17,6 +17,7 @@ export default function TodoList({ todos }) {
           <TodoItem
             key={todo.id}
             todo={todo}
+            onTodoUpdated={onTodoUpdated}
           />
         ))}
       </tbody>
