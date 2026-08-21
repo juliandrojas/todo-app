@@ -5,13 +5,17 @@ const app = express();
 
 app.use(
   cors({
-    origin: ["http://localhost:5173", "http://127.0.0.1:5173"],
+    origin: ["http://localhost:5173", "http://127.0.0.1:5173", "https://todo-client.vercel.app"],
     credentials: true,
   })
 );
 app.use(express.json());
 
 const todos = [];
+
+app.get("/", (req, res) => {
+  res.json({ message: "API on FIRE!"})
+})
 
 app.get("/api/todos", (req, res) => {
   res.json({
