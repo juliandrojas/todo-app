@@ -14,7 +14,7 @@ export default function Todos() {
     const loadTodos = async () => {
       try {
         const data = await getTodos();
-        setTodos(data);
+        setTodos(Array.isArray(data) ? data : []);
       } catch (error) {
         console.error("Error al obtener las tareas:", error);
         setError("No se pudieron cargar las tareas");
