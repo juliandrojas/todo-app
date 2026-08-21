@@ -607,11 +607,7 @@ Un conflicto ocurre cuando Git no puede determinar automáticamente cómo combin
 Ejemplo:
 
 ```text
-<<<<<<< HEAD
 Código de master
-=======
-Código de feature
->>>>>>> feature/todo-list
 ```
 
 Para solucionar un conflicto:
